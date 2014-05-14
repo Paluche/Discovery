@@ -19,3 +19,4 @@
 
 #ChibiOS build file
 build
+.dep
