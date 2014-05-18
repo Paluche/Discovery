@@ -63,8 +63,8 @@
 #define GPIOA_LCD_G2                6
 #define GPIOA_ACP_RST               7
 #define GPIOA_I2C3_SCL              8
-#define GPIOA_PIN9                  9
-#define GPIOA_PIN10                 10
+#define GPIOA_USART1_TX             9
+#define GPIOA_USART1_RX             10
 #define GPIOA_LCD_R4                11
 #define GPIOA_LCD_R5                12
 #define GPIOA_SWDIO                 13
@@ -241,8 +241,8 @@
  * PA6  - LCD_G2                    (alternate 14).
  * PA7  - ACP_RST                   (input pullup).
  * PA8  - I2C3_SCL                  (alternate 4).
- * PA9  - PIN9                      (input pullup).
- * PA10 - PIN10                     (input pullup).
+ * PA9  - USART1_TX                 (alternate 7).
+ * PA10 - USART1_RX                 (alternate 7).
  * PA11 - LCD_R4                    (alternate 14).
  * PA12 - LCD_R5                    (alternate 14).
  * PA13 - SWDIO                     (alternate 0).
@@ -258,8 +258,8 @@
                                      PIN_MODE_ALTERNATE(GPIOA_LCD_G2) |     \
                                      PIN_MODE_INPUT(GPIOA_ACP_RST) |        \
                                      PIN_MODE_ALTERNATE(GPIOA_I2C3_SCL) |   \
-                                     PIN_MODE_INPUT(GPIOA_PIN9) |           \
-                                     PIN_MODE_INPUT(GPIOA_PIN10) |          \
+                                     PIN_MODE_ALTERNATE(GPIOA_USART1_TX) |  \
+                                     PIN_MODE_ALTERNATE(GPIOA_USART1_RX) |  \
                                      PIN_MODE_ALTERNATE(GPIOA_LCD_R4) |     \
                                      PIN_MODE_ALTERNATE(GPIOA_LCD_R5) |     \
                                      PIN_MODE_ALTERNATE(GPIOA_SWDIO) |      \
@@ -274,8 +274,8 @@
                                      PIN_OTYPE_PUSHPULL(GPIOA_LCD_G2) |     \
                                      PIN_OTYPE_PUSHPULL(GPIOA_ACP_RST) |    \
                                      PIN_OTYPE_OPENDRAIN(GPIOA_I2C3_SCL) |  \
-                                     PIN_OTYPE_PUSHPULL(GPIOA_PIN9) |       \
-                                     PIN_OTYPE_PUSHPULL(GPIOA_PIN10) |      \
+                                     PIN_OTYPE_PUSHPULL(GPIOA_USART1_TX) |  \
+                                     PIN_OTYPE_PUSHPULL(GPIOA_USART1_RX) |  \
                                      PIN_OTYPE_PUSHPULL(GPIOA_LCD_R4) |     \
                                      PIN_OTYPE_PUSHPULL(GPIOA_LCD_R5) |     \
                                      PIN_OTYPE_PUSHPULL(GPIOA_SWDIO) |      \
@@ -290,8 +290,8 @@
                                      PIN_OSPEED_100M(GPIOA_LCD_G2) |        \
                                      PIN_OSPEED_2M(GPIOA_ACP_RST) |         \
                                      PIN_OSPEED_100M(GPIOA_I2C3_SCL) |      \
-                                     PIN_OSPEED_2M(GPIOA_PIN9) |            \
-                                     PIN_OSPEED_2M(GPIOA_PIN10) |           \
+                                     PIN_OSPEED_2M(GPIOA_USART1_TX) |       \
+                                     PIN_OSPEED_2M(GPIOA_USART1_RX) |       \
                                      PIN_OSPEED_100M(GPIOA_LCD_R4) |        \
                                      PIN_OSPEED_100M(GPIOA_LCD_R5) |        \
                                      PIN_OSPEED_100M(GPIOA_SWDIO) |         \
@@ -306,8 +306,8 @@
                                      PIN_PUPDR_FLOATING(GPIOA_LCD_G2) |     \
                                      PIN_PUPDR_PULLUP(GPIOA_ACP_RST) |      \
                                      PIN_PUPDR_FLOATING(GPIOA_I2C3_SCL) |   \
-                                     PIN_PUPDR_PULLUP(GPIOA_PIN9) |         \
-                                     PIN_PUPDR_PULLUP(GPIOA_PIN10) |        \
+                                     PIN_PUPDR_PULLUP(GPIOA_USART1_TX) |    \
+                                     PIN_PUPDR_PULLUP(GPIOA_USART1_RX) |    \
                                      PIN_PUPDR_FLOATING(GPIOA_LCD_R4) |     \
                                      PIN_PUPDR_FLOATING(GPIOA_LCD_R5) |     \
                                      PIN_PUPDR_PULLUP(GPIOA_SWDIO) |        \
@@ -322,8 +322,8 @@
                                      PIN_ODR_HIGH(GPIOA_LCD_G2) |           \
                                      PIN_ODR_HIGH(GPIOA_ACP_RST) |          \
                                      PIN_ODR_HIGH(GPIOA_I2C3_SCL) |         \
-                                     PIN_ODR_HIGH(GPIOA_PIN9) |             \
-                                     PIN_ODR_HIGH(GPIOA_PIN10) |            \
+                                     PIN_ODR_HIGH(GPIOA_USART1_TX) |        \
+                                     PIN_ODR_HIGH(GPIOA_USART1_RX) |        \
                                      PIN_ODR_HIGH(GPIOA_LCD_R4) |           \
                                      PIN_ODR_HIGH(GPIOA_LCD_R5) |           \
                                      PIN_ODR_HIGH(GPIOA_SWDIO) |            \
@@ -338,8 +338,8 @@
                                      PIN_AFIO_AF(GPIOA_LCD_G2, 14) |        \
                                      PIN_AFIO_AF(GPIOA_ACP_RST, 0))
 #define VAL_GPIOA_AFRH              (PIN_AFIO_AF(GPIOA_I2C3_SCL, 4) |       \
-                                     PIN_AFIO_AF(GPIOA_PIN9, 0) |           \
-                                     PIN_AFIO_AF(GPIOA_PIN10, 0) |          \
+                                     PIN_AFIO_AF(GPIOA_USART1_TX, 7) |      \
+                                     PIN_AFIO_AF(GPIOA_USART1_RX, 7) |      \
                                      PIN_AFIO_AF(GPIOA_LCD_R4, 14) |        \
                                      PIN_AFIO_AF(GPIOA_LCD_R5, 14) |        \
                                      PIN_AFIO_AF(GPIOA_SWDIO, 0) |          \
