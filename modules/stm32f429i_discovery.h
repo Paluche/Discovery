@@ -43,53 +43,54 @@
 #ifdef __cplusplus
  extern "C" {
 #endif
-                                              
+
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
-   
+//#include "stm32f4xx_hal.h" We will use CHibiOS HAL
+#include "hal.h"
+
 /** @addtogroup BSP
   * @{
   */
-  
+
 /** @addtogroup STM32F4_DISCOVERY
   * @{
   */
-   
+
 /** @addtogroup STM32F429I_DISCOVERY LOW_LEVEL
   * @{
   */
-   
+
 /** @defgroup STM32F429I_DISCOVERY LOW_LEVEL_Exported_Types
   * @{
   */
-typedef enum 
+typedef enum
 {
   LED3 = 0,
   LED4 = 1
 } Led_TypeDef;
 
-typedef enum 
-{  
+typedef enum
+{
   BUTTON_KEY = 0,
 } Button_TypeDef;
 
-typedef enum 
-{  
+typedef enum
+{
   BUTTON_MODE_GPIO = 0,
   BUTTON_MODE_EXTI = 1
-} ButtonMode_TypeDef;     
+} ButtonMode_TypeDef;
 
 /**
   * @}
-  */ 
+  */
 
 /** @defgroup STM32F429I_DISCOVERY LOW_LEVEL_Exported_Constants
   * @{
-  */ 
+  */
 
-/** 
-  * @brief  Define for STM32F429I_DISCO board  
-  */ 
+/**
+  * @brief  Define for STM32F429I_DISCO board
+  */
 #if !defined (USE_STM32F429I_DISCO)
  #define USE_STM32F429I_DISCO
 #endif
@@ -98,27 +99,27 @@ typedef enum
   * @{
   */
 #define LEDn                                    2
-  
+
 #define LED3_PIN                                GPIO_PIN_13
 #define LED3_GPIO_PORT                          GPIOG
-#define LED3_GPIO_CLK_ENABLE()                  __GPIOG_CLK_ENABLE()  
-#define LED3_GPIO_CLK_DISABLE()                 __GPIOG_CLK_DISABLE()  
+#define LED3_GPIO_CLK_ENABLE()                  __GPIOG_CLK_ENABLE()
+#define LED3_GPIO_CLK_DISABLE()                 __GPIOG_CLK_DISABLE()
 
 
 #define LED4_PIN                                GPIO_PIN_14
 #define LED4_GPIO_PORT                          GPIOG
-#define LED4_GPIO_CLK_ENABLE()                  __GPIOG_CLK_ENABLE()  
-#define LED4_GPIO_CLK_DISABLE()                 __GPIOG_CLK_DISABLE()  
+#define LED4_GPIO_CLK_ENABLE()                  __GPIOG_CLK_ENABLE()
+#define LED4_GPIO_CLK_DISABLE()                 __GPIOG_CLK_DISABLE()
 
 #define LEDx_GPIO_CLK_ENABLE(__INDEX__)         (((__INDEX__) == 0) ? LED3_GPIO_CLK_ENABLE() : LED4_GPIO_CLK_ENABLE())
 #define LEDx_GPIO_CLK_DISABLE(__INDEX__)        (((__INDEX__) == 0) ? LED3_GPIO_CLK_DISABLE() : LED4_GPIO_CLK_DISABLE())
 /**
   * @}
-  */ 
-  
+  */
+
 /** @addtogroup STM32F429I_DISCOVERY LOW_LEVEL_BUTTON
   * @{
-  */  
+  */
 #define BUTTONn                                 1
 
 /**
@@ -138,26 +139,26 @@ typedef enum
 
 /** @addtogroup STM32F429I_DISCOVERY LOW_LEVEL_BUS
   * @{
-  */  
+  */
 /* Exported constanIO --------------------------------------------------------*/
-#define IO_I2C_ADDRESS                      0x82 
+#define IO_I2C_ADDRESS                      0x82
 #define TS_I2C_ADDRESS                      0x82
 
 #ifdef EE_M24LR64
 #define EEPROM_I2C_ADDRESS_A01              0xA0
 #define EEPROM_I2C_ADDRESS_A02              0xA6
-#endif /* EE_M24LR64 */ 
+#endif /* EE_M24LR64 */
 
 
 /*##################### I2Cx ###################################*/
-/* User can use this section to tailor I2Cx instance used and associated 
+/* User can use this section to tailor I2Cx instance used and associated
    resources */
 #define DISCOVERY_I2Cx                          I2C3
 #define DISCOVERY_I2Cx_CLOCK_ENABLE()           __I2C3_CLK_ENABLE()
 #define DISCOVERY_I2Cx_FORCE_RESET()            __I2C3_FORCE_RESET()
 #define DISCOVERY_I2Cx_RELEASE_RESET()          __I2C3_RELEASE_RESET()
 #define DISCOVERY_I2Cx_SDA_GPIO_CLK_ENABLE()    __GPIOC_CLK_ENABLE()
-#define DISCOVERY_I2Cx_SCL_GPIO_CLK_ENABLE()    __GPIOA_CLK_ENABLE() 
+#define DISCOVERY_I2Cx_SCL_GPIO_CLK_ENABLE()    __GPIOA_CLK_ENABLE()
 #define DISCOVERY_I2Cx_SDA_GPIO_CLK_DISABLE()   __GPIOC_CLK_DISABLE()
 
 /* Definition for DISCO I2Cx Pins */
@@ -171,9 +172,9 @@ typedef enum
 #define DISCOVERY_I2Cx_EV_IRQn                  I2C3_EV_IRQn
 #define DISCOVERY_I2Cx_ER_IRQn                  I2C3_ER_IRQn
 
-/* I2C clock speed configuration (in Hz) 
-  WARNING: 
-   Make sure that this define is not already declared in other files (ie. 
+/* I2C clock speed configuration (in Hz)
+  WARNING:
+   Make sure that this define is not already declared in other files (ie.
   stm324x9i_disco.h file). It can be used in parallel by other modules. */
 #ifndef I2C_SPEED
  #define I2C_SPEED                          100000
@@ -195,14 +196,14 @@ typedef enum
    on accurate values, they just guarantee that the application will not remain
    stuck if the SPI communication is corrupted.
    You may modify these timeout values depending on CPU frequency and application
-   conditions (interrupts routines ...). */   
+   conditions (interrupts routines ...). */
 #define SPIx_TIMEOUT_MAX              ((uint32_t)0x1000)
 
 
 /*##################### IOE ###################################*/
-/** 
-  * @brief  IOE Control pin  
-  */ 
+/**
+  * @brief  IOE Control pin
+  */
 /* Definition for external IT for STMPE811 */
 #define STMPE811_INT_PIN                        GPIO_PIN_15
 #define STMPE811_INT_GPIO_PORT                  GPIOA
@@ -212,7 +213,7 @@ typedef enum
 #define STMPE811_INT_EXTIHandler                EXTI15_10_IRQHandler
 /**
   * @}
-  */ 
+  */
 
 /*##################### LCD ###################################*/
 /* Chip Select macro definition */
@@ -227,37 +228,37 @@ typedef enum
 #define LCD_RDX_LOW()      HAL_GPIO_WritePin(LCD_RDX_GPIO_PORT, LCD_RDX_PIN, GPIO_PIN_RESET)
 #define LCD_RDX_HIGH()     HAL_GPIO_WritePin(LCD_RDX_GPIO_PORT, LCD_RDX_PIN, GPIO_PIN_SET)
 
-/** 
-  * @brief  LCD Control pin  
-  */ 
+/**
+  * @brief  LCD Control pin
+  */
 #define LCD_NCS_PIN                GPIO_PIN_2
 #define LCD_NCS_GPIO_PORT          GPIOC
 #define LCD_NCS_GPIO_CLK_ENABLE()  __GPIOC_CLK_ENABLE()
 #define LCD_NCS_GPIO_CLK_DISABLE() __GPIOC_CLK_DISABLE()
 /**
   * @}
-  */ 
-/** 
-  * @brief  LCD Command/data pin  
+  */
+/**
+  * @brief  LCD Command/data pin
   */
 #define LCD_WRX_PIN                GPIO_PIN_13
 #define LCD_WRX_GPIO_PORT          GPIOD
 #define LCD_WRX_GPIO_CLK_ENABLE()  __GPIOD_CLK_ENABLE()
 #define LCD_WRX_GPIO_CLK_DISABLE() __GPIOD_CLK_DISABLE()
-  
+
 #define LCD_RDX_PIN                GPIO_PIN_12
 #define LCD_RDX_GPIO_PORT          GPIOD
 #define LCD_RDX_GPIO_CLK_ENABLE()  __GPIOD_CLK_ENABLE()
 #define LCD_RDX_GPIO_CLK_DISABLE() __GPIOD_CLK_DISABLE()
 /**
   * @}
-  */ 
+  */
 
 
 /*##################### GYRO ##########################*/
 /* Read/Write command */
-#define READWRITE_CMD              ((uint8_t)0x80) 
-/* Multiple byte read/write command */ 
+#define READWRITE_CMD              ((uint8_t)0x80)
+/* Multiple byte read/write command */
 #define MULTIPLEBYTE_CMD           ((uint8_t)0x40)
 /* Dummy Byte Send by the SPI Master device in order to generate the Clock to the Slave device */
 #define DUMMY_BYTE                 ((uint8_t)0x00)
@@ -278,12 +279,12 @@ typedef enum
 #define GYRO_INT_GPIO_CLK_DISABLE()        __GPIOA_CLK_DISABLE()
 #define GYRO_INT_GPIO_PORT                 GPIOA                       /* GPIOA */
 #define GYRO_INT1_PIN                      GPIO_PIN_1                  /* PA.01 */
-#define GYRO_INT1_EXTI_IRQn                EXTI1_IRQn 
+#define GYRO_INT1_EXTI_IRQn                EXTI1_IRQn
 #define GYRO_INT2_PIN                      GPIO_PIN_2                  /* PA.02 */
-#define GYRO_INT2_EXTI_IRQn                EXTI2_IRQn 
+#define GYRO_INT2_EXTI_IRQn                EXTI2_IRQn
 /**
   * @}
-  */ 
+  */
 
 
 #ifdef EE_M24LR64
@@ -293,12 +294,12 @@ typedef enum
 /**
   * @brief  I2C EEPROM Interface pins
   */
-#define EEPROM_I2C_DMA                          DMA1   
+#define EEPROM_I2C_DMA                          DMA1
 #define EEPROM_I2C_DMA_CHANNEL                  DMA_CHANNEL_3
 #define EEPROM_I2C_DMA_STREAM_TX                DMA1_Stream4
 #define EEPROM_I2C_DMA_STREAM_RX                DMA1_Stream2
 #define EEPROM_I2C_DMA_CLK_ENABLE()             __DMA1_CLK_ENABLE()
-   
+
 #define EEPROM_I2C_DMA_TX_IRQn                  DMA1_Stream4_IRQn
 #define EEPROM_I2C_DMA_RX_IRQn                  DMA1_Stream2_IRQn
 #define EEPROM_I2C_DMA_TX_IRQHandler            DMA1_Stream4_IRQHandler
@@ -306,11 +307,11 @@ typedef enum
 #define EEPROM_I2C_DMA_PREPRIO                  0
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */  
+  */
 #endif /*EE_M24LR64*/
 /**
   * @}
@@ -318,16 +319,16 @@ typedef enum
 
 /** @defgroup STM32F429I_DISCOVERY LOW_LEVEL_Exported_Macros
   * @{
-  */  
+  */
 /**
   * @}
-  */ 
+  */
 
 
 /** @defgroup STM32F429I_DISCOVERY LOW_LEVEL_Exported_Functions
   * @{
   */
-uint32_t  BSP_GetVersion(void);  
+uint32_t  BSP_GetVersion(void);
 void      BSP_LED_Init(Led_TypeDef Led);
 void      BSP_LED_On(Led_TypeDef Led);
 void      BSP_LED_Off(Led_TypeDef Led);
@@ -337,7 +338,7 @@ uint32_t  BSP_PB_GetState(Button_TypeDef Button);
 /**
   * @}
   */
-  
+
 #ifdef __cplusplus
 }
 #endif
@@ -345,11 +346,11 @@ uint32_t  BSP_PB_GetState(Button_TypeDef Button);
 #endif /* __STM32F429I_DISCOVERY_H */
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}

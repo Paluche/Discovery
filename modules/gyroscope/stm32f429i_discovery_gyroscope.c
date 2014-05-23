@@ -40,11 +40,11 @@
 
 /** @addtogroup BSP
   * @{
-  */ 
+  */
 
 /** @addtogroup STM32F429I_DISCOVERY
   * @{
-  */ 
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_GYRO STM32F429I_DISCOVERY_GYRO
   * @{
@@ -54,7 +54,7 @@
 /** @defgroup STM32F429I_DISCOVERY_GYRO_Private_TypesDefinitions STM32F429I_DISCOVERY_GYRO_Private_TypesDefinitions
   * @{
   */
-  
+
 /**
   * @}
   */
@@ -73,11 +73,11 @@
 
 /**
   * @}
-  */ 
-  
+  */
+
 /** @defgroup STM32F429I_DISCOVERY_GYRO_Private_Variables STM32F429I_DISCOVERY_GYRO_Private_Variables
   * @{
-  */ 
+  */
 static GYRO_DrvTypeDef *GyroscopeDrv;
 
 /**
@@ -96,21 +96,21 @@ static GYRO_DrvTypeDef *GyroscopeDrv;
   * @{
   */
 
-  
+
 /**
   * @brief  Set GYRO Initialization.
   * @param  None
   * @retval None
   */
 uint8_t BSP_GYRO_Init(void)
-{  
+{
   uint8_t ret = GYRO_ERROR;
   uint16_t ctrl = 0x0000;
   GYRO_InitTypeDef L3GD20_InitStructure;
   GYRO_FilterConfigTypeDef L3GD20_FilterStructure={0,0};
 
   if(L3gd20Drv.ReadID() == I_AM_L3GD20)
-  {	
+  {
     /* Initialize the gyroscope driver structure */
     GyroscopeDrv = &L3gd20Drv;
 
@@ -121,7 +121,7 @@ uint8_t BSP_GYRO_Init(void)
     L3GD20_InitStructure.Band_Width = L3GD20_BANDWIDTH_4;
     L3GD20_InitStructure.BlockData_Update = L3GD20_BlockDataUpdate_Continous;
     L3GD20_InitStructure.Endianness = L3GD20_BLE_LSB;
-    L3GD20_InitStructure.Full_Scale = L3GD20_FULLSCALE_500; 
+    L3GD20_InitStructure.Full_Scale = L3GD20_FULLSCALE_500;
 
     /* Configure MEMS: data rate, power mode, full scale and axes */
     ctrl = (uint16_t) (L3GD20_InitStructure.Power_Mode | L3GD20_InitStructure.Output_DataRate | \
@@ -130,7 +130,7 @@ uint8_t BSP_GYRO_Init(void)
     ctrl |= (uint16_t) ((L3GD20_InitStructure.BlockData_Update | L3GD20_InitStructure.Endianness | \
                          L3GD20_InitStructure.Full_Scale) << 8);
 
-    /* L3gd20 Init */	 
+    /* L3gd20 Init */
     GyroscopeDrv->Init(ctrl);
 
     L3GD20_FilterStructure.HighPassFilter_Mode_Selection = L3GD20_HPM_NORMAL_MODE_RES;
@@ -149,7 +149,7 @@ uint8_t BSP_GYRO_Init(void)
   {
     ret = GYRO_ERROR;
   }
-  
+
   return ret;
 }
 
@@ -165,7 +165,7 @@ uint8_t BSP_GYRO_ReadID(void)
   if(GyroscopeDrv->ReadID != NULL)
   {
     id = GyroscopeDrv->ReadID();
-  }  
+  }
   return id;
 }
 
@@ -185,36 +185,36 @@ void BSP_GYRO_Reset(void)
 
 /**
   * @brief  Configure INT1 interrupt
-  * @param  pIntConfig: pointer to a L3GD20_InterruptConfig_TypeDef 
+  * @param  pIntConfig: pointer to a L3GD20_InterruptConfig_TypeDef
   *         structure that contains the configuration setting for the L3GD20 Interrupt.
   * @retval None
   */
 void BSP_GYRO_ITConfig(GYRO_InterruptConfigTypeDef *pIntConfig)
-{  
+{
   uint16_t interruptconfig = 0x0000;
 
   if(GyroscopeDrv->ConfigIT != NULL)
   {
-    /* Configure latch Interrupt request and axe interrupts */                   
+    /* Configure latch Interrupt request and axe interrupts */
     interruptconfig |= ((uint8_t)(pIntConfig->Latch_Request| \
                                   pIntConfig->Interrupt_Axes) << 8);
-                   
+
     interruptconfig |= (uint8_t)(pIntConfig->Interrupt_ActiveEdge);
-  
+
   GyroscopeDrv->ConfigIT(interruptconfig);
-  }  
+  }
 }
 
 /**
   * @brief  Enable INT1 or INT2 interrupt
-  * @param  IntPin: Interrupt pin 
-  *      This parameter can be: 
+  * @param  IntPin: Interrupt pin
+  *      This parameter can be:
   *        @arg L3GD20_INT1
   *        @arg L3GD20_INT2
   * @retval None
   */
 void BSP_GYRO_EnableIT(uint8_t IntPin)
-{  
+{
   if(GyroscopeDrv->EnableIT != NULL)
   {
     GyroscopeDrv->EnableIT(IntPin);
@@ -223,14 +223,14 @@ void BSP_GYRO_EnableIT(uint8_t IntPin)
 
 /**
   * @brief  Disable INT1 or INT2 interrupt
-  * @param  IntPin: Interrupt pin 
-  *      This parameter can be: 
+  * @param  IntPin: Interrupt pin
+  *      This parameter can be:
   *        @arg L3GD20_INT1
   *        @arg L3GD20_INT2
   * @retval None
   */
 void BSP_GYRO_DisableIT(uint8_t IntPin)
-{  
+{
   if(GyroscopeDrv->DisableIT != NULL)
   {
     GyroscopeDrv->DisableIT(IntPin);
@@ -239,7 +239,7 @@ void BSP_GYRO_DisableIT(uint8_t IntPin)
 
 /**
   * @brief  Get XYZ angular acceleration
-  * @param pfData: pointer on floating array         
+  * @param pfData: pointer on floating array
   * @retval None
   */
 void BSP_GYRO_GetXYZ(float* pfData)
@@ -252,22 +252,22 @@ void BSP_GYRO_GetXYZ(float* pfData)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
-  
-/**
-  * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
-  
+  */
+
 /**
   * @}
-*/ 
+  */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/     
+/**
+  * @}
+*/
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

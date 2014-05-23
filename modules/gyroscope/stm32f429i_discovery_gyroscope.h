@@ -4,7 +4,7 @@
   * @author  MCD Application Team
   * @version V2.0.1
   * @date    26-February-2014
-  * @brief   This file contains definitions for stm32f429i_discovery_gyroscope.c 
+  * @brief   This file contains definitions for stm32f429i_discovery_gyroscope.c
   *          firmware driver.
   ******************************************************************************
   * @attention
@@ -35,7 +35,7 @@
   *
   ******************************************************************************
   */
-  
+
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F429I_DISCOVERY_GYRO_H
@@ -46,38 +46,39 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery.h"
+//#include "stm32f429i_discovery.h"
+#include "hal.h"
 /* Include Gyroscope component driver */
-#include "..\Components\l3gd20\l3gd20.h"
+#include "l3gd20.h"
 
 /** @addtogroup BSP
   * @{
   */
-  
+
 /** @addtogroup STM32F429I_DISCOVERY
   * @{
-  */ 
+  */
 
 /** @addtogroup STM32F429I_DISCOVERY_GYRO
   * @{
   */
-  
+
 /** @defgroup STM32F429I_DISCOVERY_GYRO_Exported_Types STM32F429I_DISCOVERY_GYRO_Exported_Types
   * @{
   */
-typedef enum 
+typedef enum
 {
   GYRO_OK = 0,
   GYRO_ERROR = 1,
   GYRO_TIMEOUT = 2
-} 
+}
 GYRO_StatusTypeDef;
 
 /**
   * @}
   */
 
-  
+
 /** @defgroup STM32F429I_DISCOVERY_GYRO_Exported_Constants STM32F429I_DISCOVERY_GYRO_Exported_Constants
   * @{
   */
@@ -91,11 +92,11 @@ GYRO_StatusTypeDef;
 /**
   * @}
   */
- 
+
 /** @defgroup STM32F429I_DISCOVERY_GYRO_Exported_Functions STM32F429I_DISCOVERY_GYRO_Exported_Functions
   * @{
   */
-/* Sensor Configuration Functions */ 
+/* Sensor Configuration Functions */
 uint8_t  BSP_GYRO_Init(void);
 void     BSP_GYRO_Reset(void);
 uint8_t  BSP_GYRO_ReadID(void);
@@ -116,14 +117,14 @@ void     BSP_GYRO_GetXYZ(float* pfData);
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/ 
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

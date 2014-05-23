@@ -1,4 +1,4 @@
-Show Laser Documentation
+How to have forms from a laser beam
 =============================================================================
 
 # The galvonometers
@@ -42,25 +42,3 @@ Show Laser Documentation
     The limit of our eyes
 
     Angular resolution 0.007° (4 arcminutes)
-
-# Laser show theory
-## Frame rate
-    Just like a movie that display 24 frames by seconds (if you are too young
-    and know only the HD movie digitalised at 60 frames by seconds, it used to
-    be 24). We will display consecutives frames, the rate is fixed at
-    (TODO 24 min) frames by seconds.
-
-    The main problem is a mechanical problem, we need to have the time to scan
-    the complete form whitin the frame time associated to the rate (1/rate).
-    In the case of a rate of 24 frames per seconds. The frame time is
-    approximately 42ms.
-
-## Display angles
-    To decide what rate we will use, we need to define the show display angles
-
-    First of all the angle precision:
-       start at the source, the STM32F4 Digital-to-Analog Converter range and
-       precision.
-
-
-

@@ -71,18 +71,14 @@ endif
 PROJECT = discovery
 
 # Paths
-CHIBIOS = ../ChibiOS
+CHIBIOS = ../../ChibiOS
 BOARD   = board
 C_FILES = src
 H_FILES = include
 CONF    = conf
-MODULES = ../modules
-ST_HAL_DRIVER = ../STM32F4xx_HAL_Driver
 
 #Imported source files
 include $(BOARD)/board.mk
-include $(MODULES)/modules.mk
-include $(ST_HAL_DRIVER)/stm32f4xx_hal_driver.mk
 include $(CHIBIOS)/os/hal/platforms/STM32F4xx/platform.mk
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/STM32F4xx/port.mk
@@ -102,8 +98,6 @@ CSRC = $(PORTSRC) \
        $(BOARDSRC) \
        $(CHIBIOS)/os/various/shell.c \
        $(CHIBIOS)/os/various/chprintf.c \
-	   $(MODULES_SRC) \
-	   $(ST_HAL_DRIVER_SRC) \
        $(C_FILES)/usbcfg.c \
 	   $(C_FILES)/main.c
 
